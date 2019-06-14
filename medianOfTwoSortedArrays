@@ -1,0 +1,57 @@
+public class Solution {
+    
+    
+    public int[] interweave(int[] nums1, int[] nums2){
+        if(nums1.Length ==  0){
+            return nums2;
+        }
+        
+        if(nums2.Length == 0){
+            return nums1;
+        }
+        
+        
+        
+        int[] newarray = new int[nums1.Length + nums2.Length];
+        if (nums1[nums1.Length-1] < nums2[0]){
+            Array.Copy(nums1,newarray,nums1.Length);
+            Array.Copy(nums2, 0,newarray,nums1.Length,nums2.Length);
+            return newarray;
+            }
+
+        
+    if(nums2[nums2.Length-1] < nums1[0]){
+            Array.Copy(nums2,newarray,nums2.Length);
+            Array.Copy(nums1, 0,newarray,nums2.Length,nums1.Length);
+            return newarray;
+        
+    }
+        
+        int i = 0;
+        int j = 0;
+        Console.WriteLine("Done p3");
+        for(int k = 0; k < newarray.Length;k++){
+            Console.WriteLine(newarray[k]);
+            }
+        
+        
+        
+        return newarray;
+        
+    }
+    
+    
+    public double FindMedianSortedArrays(int[] nums1, int[] nums2) {
+        double val = 0.0;
+        int[] ret = interweave(nums1, nums2);
+        //Console.WriteLine(String.Format(@"{0}, {1}",ret[(ret.Length-1)/2],ret[(ret.Length+1)/2]));
+    
+        if(ret.Length % 2 == 0){
+            val = (ret[(ret.Length-1)/2]*1.0 + ret[(ret.Length+1)/2]*1.0)/2;
+        }else
+        {
+            val = ret[ret.Length/2];
+        }
+        return val;
+    }
+}
